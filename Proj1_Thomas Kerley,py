@@ -3,6 +3,7 @@
 # Fall 2022
 # Mini project 1
 
-import numPy as num
-import sciPy as sci
+import numPy as np
+import sciPy as s
 
+a = np.array([2,5,32,54,67,21,6,5,0])
