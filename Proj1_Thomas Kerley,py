@@ -5,5 +5,21 @@
 
 import numPy as np
 import sciPy as s
+import yfinance as yf
+
+# sets the date range of today and 10 days ago
+import datetime as dt
+today = dt.date.today()
+delta = dt.timedelta(days=10)
 
 a = np.array([2,5,32,54,67,21,6,5,0])
+
+msft = yf.Ticker("MSFT")
+
+data = yf.download("MSFT", start=today-delta, end=today)
+
+# get stock info
+msft.info
+
+# get histroical market data
+hist = msft.history(period="max")
