@@ -14,12 +14,37 @@ delta = dt.timedelta(days=10)
 
 a = np.array([2,5,32,54,67,21,6,5,0])
 
-msft = yf.Ticker("MSFT")
-
+# saves data for the ticker between start and delta
 data = yf.download("MSFT", start=today-delta, end=today)
 
+#creates a list of prices
+msftPrices = []
+for price in data['Adj Close']:
+    msftPrices.append(price)
+
 # get stock info
-msft.info
+msft.info 
 
 # get histroical market data
 hist = msft.history(period="max")
+
+for i in today:
+    if today[i].weekday > 4:
+        delta += 1
+
+
+# sets the date range and shifts for weekends
+import datetime as dt
+
+x = dt.date.today()
+delta = dt.timedelta(days=10)
+for i in range(10):
+  tempDelta = dt.timedelta(days=i)
+  temp = x - tempDelta
+  if temp.weekday() > 4:
+    print("Weekend date: " + str((temp)))
+    delta = delta + dt.timedelta(days=1)
+        
+
+print("Today: " + str(x))
+print("10 days ago: " + str(x-delta))
