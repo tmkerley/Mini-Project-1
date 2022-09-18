@@ -3,48 +3,29 @@
 # Fall 2022
 # Mini project 1
 
-import numPy as np
-import sciPy as s
+import kerleyFunctions as kf
+import numpy as np
+import scipy as sp
 import yfinance as yf
-
-# sets the date range of today and 10 days ago
 import datetime as dt
-today = dt.date.today()
-delta = dt.timedelta(days=10)
+import matplotlib.pyplot as plt
 
-a = np.array([2,5,32,54,67,21,6,5,0])
+today = dt.date.today()
+print("Today is: " + str(today))
+delta = dt.timedelta(days=10)
+startDate = kf.adjustForWeekends(today, delta)
 
 # saves data for the ticker between start and delta
-data = yf.download("MSFT", start=today-delta, end=today)
+data = yf.download("MSFT", start=startDate, end=today)
 
-#creates a list of prices
+# creates a list of prices
 msftPrices = []
 for price in data['Adj Close']:
     msftPrices.append(price)
 
-# get stock info
-msft.info 
+# converts the list of prices to an array
+msftarray = np.array(msftPrices)
 
-# get histroical market data
-hist = msft.history(period="max")
-
-for i in today:
-    if today[i].weekday > 4:
-        delta += 1
-
-
-# sets the date range and shifts for weekends
-import datetime as dt
-
-x = dt.date.today()
-delta = dt.timedelta(days=10)
-for i in range(10):
-  tempDelta = dt.timedelta(days=i)
-  temp = x - tempDelta
-  if temp.weekday() > 4:
-    print("Weekend date: " + str((temp)))
-    delta = delta + dt.timedelta(days=1)
-        
-
-print("Today: " + str(x))
-print("10 days ago: " + str(x-delta))
+# plots the array of prices
+plt.plot(msftarray)
+plt.show()
