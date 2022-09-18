@@ -10,13 +10,22 @@ import yfinance as yf
 import datetime as dt
 import matplotlib.pyplot as plt
 
-today = dt.date.today()
-print("Today is: " + str(today))
-delta = dt.timedelta(days=10)
-startDate = kf.adjustForWeekends(today, delta)
+# init and set the dates
+# today = dt.date.today()
+# delta = dt.timedelta(days=10)
+# startDate = kf.adjustForWeekends(today, delta)
+# print("Today is: " + today.isoformat())
 
+delta = 10
+# ticker list
+tickerList = ["AAPL", "AMZN", "MSFT", "MNDT", "NFLX", "TSLA"]
 # saves data for the ticker between start and delta
-data = yf.download("MSFT", start=startDate, end=today)
+# data = yf.download("MSFT", start=startDate.isoformat(), end=today.isoformat())
+# data = yf.download(tickerList, interval=delta)
+data = yf.download("NFLX", interval="1wk")
+
+
+print(data)
 
 # creates a list of prices
 msftPrices = []
@@ -28,4 +37,8 @@ msftarray = np.array(msftPrices)
 
 # plots the array of prices
 plt.plot(msftarray)
+
+
+fname = "Charts/Netflix"
+plt.savefig(fname, bbox_inches='tight')
 plt.show()
