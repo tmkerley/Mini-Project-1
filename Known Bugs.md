@@ -1,3 +1,5 @@
+# Known Bugs
+
 If the interval set to anything other than "1wk" the program breaks.
     approx line 23 : data = yf.download("NFLX", interval="1d")
 

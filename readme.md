@@ -1,4 +1,12 @@
-Matplotlib Version 3.6.0
+# Mini-project 1
+
+## Purpose
+
+This was to explore the matplotlib, numpy, scipy, and APIs. 
+
+## Third-Party Packages
+
+* Matplotlib Version 3.6.0
     install using pip:
 
         pip install matplotlib
@@ -8,7 +16,7 @@ Matplotlib Version 3.6.0
         https://matplotlib.org/stable/index.html#
 
 
-NumPy Version 1.23.0
+* NumPy Version 1.23.0
     install using pip:
 
         pip install numpy
@@ -18,7 +26,7 @@ NumPy Version 1.23.0
         https://numpy.org/
 
 
-yFinance Version 0.1.63
+* yFinance Version 0.1.63
     install using pip:
 
         pip install -i https://pypi.anaconda.org/ranaroussi/simple yfinance
