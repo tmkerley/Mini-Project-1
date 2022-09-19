@@ -38,3 +38,10 @@ This was to explore the matplotlib, numpy, scipy, and APIs.
         Numpy <http://www.numpy.org>`_ >= 1.11.1
         requests <http://docs.python-requests.org/en/master/>`_ >= 2.14.2
         lxml <https://pypi.org/project/lxml/>`_ >= 4.5.1
+
+### Execution
+
+Run the script and you will have the final chart in a sub-folder, relative to the script location.
+### Final Notes
+
+The file plot output was combined to one plot. This was intentionally done contrary to the instructions to minimze file clutter. I noticed that if the plots aren't assigned to a variable, they are assigned to a global placeholder. This will cause each set of data to plotted on the same chart. I added labels and color coding for clarity.
