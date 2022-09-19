@@ -3,42 +3,35 @@
 # Fall 2022
 # Mini project 1
 
-import kerleyFunctions as kf
 import numpy as np
-import scipy as sp
 import yfinance as yf
-import datetime as dt
 import matplotlib.pyplot as plt
 
-# init and set the dates
-# today = dt.date.today()
-# delta = dt.timedelta(days=10)
-# startDate = kf.adjustForWeekends(today, delta)
-# print("Today is: " + today.isoformat())
-
-delta = 10
 # ticker list
-tickerList = ["AAPL", "AMZN", "MSFT", "MNDT", "NFLX", "TSLA"]
-# saves data for the ticker between start and delta
-# data = yf.download("MSFT", start=startDate.isoformat(), end=today.isoformat())
-# data = yf.download(tickerList, interval=delta)
-data = yf.download("NFLX", interval="1wk")
+tickerList = ["AAPL", "AMZN", "MSFT", "NFLX", "TSLA"]
 
+for ticker in tickerList:
+    # saves data for the ticker between start and delta
+    data = yf.download(ticker, interval="1wk")
 
-print(data)
+    # creates a list of prices
+    tickerPrices = []
+    for price in data['Adj Close']:
+        tickerPrices.append(price)
 
-# creates a list of prices
-msftPrices = []
-for price in data['Adj Close']:
-    msftPrices.append(price)
+    # Slices the price history to keep it to a set length
+    tickerPrices = tickerPrices[slice(-15, len(tickerPrices))]
 
-# converts the list of prices to an array
-msftarray = np.array(msftPrices)
+    # converts the list of prices to an array
+    tickerarray = np.array(tickerPrices)
 
-# plots the array of prices
-plt.plot(msftarray)
+    # plots the array of prices (culmative)
+    plt.plot(tickerarray, label=ticker)
 
-
-fname = "Charts/Netflix"
+# Format the chart and export it to a saved file.
+fname = "Charts/Master Chart"
+plt.title("Weekly Stock Closing Prices")
+plt.xlabel("Week")
+plt.ylabel("Price")
+plt.legend(tickerList)
 plt.savefig(fname, bbox_inches='tight')
-plt.show()
